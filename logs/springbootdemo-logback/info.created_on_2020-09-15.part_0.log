@@ -1,0 +1,21 @@
+2020-09-15 22:39:13,636 [main] INFO  [c.j.springbootlogback.SpringbootLogbackApplication] StartupInfoLogger.java:50 - Starting SpringbootLogbackApplication on DESKTOP-FA8A993 with PID 6472 (E:\workspace\springbootdemo\springboot-logback\target\classes started by Think in E:\workspace\springbootdemo)
+2020-09-15 22:39:13,665 [main] INFO  [c.j.springbootlogback.SpringbootLogbackApplication] SpringApplication.java:675 - No active profile set, falling back to default profiles: default
+2020-09-15 22:39:15,544 [main] INFO  [o.s.boot.web.embedded.tomcat.TomcatWebServer] TomcatWebServer.java:90 - Tomcat initialized with port(s): 8080 (http)
+2020-09-15 22:39:15,576 [main] INFO  [org.apache.catalina.core.StandardService] DirectJDKLog.java:173 - Starting service [Tomcat]
+2020-09-15 22:39:15,577 [main] INFO  [org.apache.catalina.core.StandardEngine] DirectJDKLog.java:173 - Starting Servlet Engine: Apache Tomcat/9.0.12
+2020-09-15 22:39:15,589 [main] INFO  [org.apache.catalina.core.AprLifecycleListener] DirectJDKLog.java:173 - Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-09-15 22:39:15,590 [main] INFO  [org.apache.catalina.core.AprLifecycleListener] DirectJDKLog.java:173 - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-09-15 22:39:15,591 [main] INFO  [org.apache.catalina.core.AprLifecycleListener] DirectJDKLog.java:173 - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-09-15 22:39:15,597 [main] INFO  [org.apache.catalina.core.AprLifecycleListener] DirectJDKLog.java:173 - OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-09-15 22:39:15,741 [main] INFO  [o.a.c.c.ContainerBase.[Tomcat].[localhost].[/demo]] DirectJDKLog.java:173 - Initializing Spring embedded WebApplicationContext
+2020-09-15 22:39:15,742 [main] INFO  [org.springframework.web.context.ContextLoader] ServletWebServerApplicationContext.java:285 - Root WebApplicationContext: initialization completed in 1900 ms
+2020-09-15 22:39:15,791 [main] INFO  [o.s.boot.web.servlet.ServletRegistrationBean] ServletRegistrationBean.java:186 - Servlet dispatcherServlet mapped to [/]
+2020-09-15 22:39:15,800 [main] INFO  [o.s.boot.web.servlet.FilterRegistrationBean] AbstractFilterRegistrationBean.java:248 - Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-09-15 22:39:15,801 [main] INFO  [o.s.boot.web.servlet.FilterRegistrationBean] AbstractFilterRegistrationBean.java:248 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-09-15 22:39:15,801 [main] INFO  [o.s.boot.web.servlet.FilterRegistrationBean] AbstractFilterRegistrationBean.java:248 - Mapping filter: 'formContentFilter' to: [/*]
+2020-09-15 22:39:15,802 [main] INFO  [o.s.boot.web.servlet.FilterRegistrationBean] AbstractFilterRegistrationBean.java:248 - Mapping filter: 'requestContextFilter' to: [/*]
+2020-09-15 22:39:16,152 [main] INFO  [o.s.scheduling.concurrent.ThreadPoolTaskExecutor] ExecutorConfigurationSupport.java:171 - Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-15 22:39:16,454 [main] INFO  [o.s.boot.web.embedded.tomcat.TomcatWebServer] TomcatWebServer.java:204 - Tomcat started on port(s): 8080 (http) with context path '/demo'
+2020-09-15 22:39:16,462 [main] INFO  [c.j.springbootlogback.SpringbootLogbackApplication] StartupInfoLogger.java:59 - Started SpringbootLogbackApplication in 3.863 seconds (JVM running for 5.854)
+2020-09-15 22:39:16,466 [main] INFO  [c.j.springbootlogback.SpringbootLogbackApplication] SpringbootLogbackApplication.java:18 - Spring boot启动初始化了 126 个 Bean
+2020-09-15 22:39:16,467 [main] WARN  [c.j.springbootlogback.SpringbootLogbackApplication] SpringbootLogbackApplication.java:19 - Spring boot启动初始化了 126 个 Bean
