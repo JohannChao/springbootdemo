@@ -1,0 +1,13 @@
+application:
+  name: dev环境 @artifactId@
+  version: dev环境 @version@
+developer.user1:
+  name: dev环境 user1 dev
+  age: dev环境 user1 19
+  weixin: dev环境 user1 weixin001
+  phone-number: dev环境 user1 13800000000
+developer.user2:
+  name: dev环境 user2 dev
+  age: dev环境 user2 19
+  weixin: dev环境 user2 weixin001
+  phone-number: dev环境 user2 13800000000

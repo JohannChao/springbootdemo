@@ -1,0 +1,8 @@
+application:
+  name: prod环境 @artifactId@
+  version: prod环境 @version@
+developer:
+  name: prod环境 prod
+  age: prod环境 12
+  weixin: prod环境 weixin001
+  phone-number: prod环境 13800000000
