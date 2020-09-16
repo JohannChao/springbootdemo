@@ -26,6 +26,8 @@
         <module>springbootdemo-helloworld</module>
         <module>springboot-properties</module>
         <module>springboot-actuator</module>
+        <module>springboot-logback</module>
+        <module>springboot-aop</module>
     </modules>
 
     <properties>
@@ -37,6 +39,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <demo.version>0.0.1-SNAPSHOT</demo.version>
+        <user.agent.version>1.20</user.agent.version>
 	</properties>
 
     <!--dependencyManagement用于管理依赖版本号-->
@@ -72,6 +75,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
+            </dependency>
+
+            <!-- 解析 UserAgent 信息 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${user.agent.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
