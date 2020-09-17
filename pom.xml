@@ -28,6 +28,7 @@
         <module>springboot-actuator</module>
         <module>springboot-logback</module>
         <module>springboot-aop</module>
+        <module>springboot-kafka</module>
     </modules>
 
     <properties>
