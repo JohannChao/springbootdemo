@@ -1,8 +1,0 @@
-2020-09-16 13:59:43,343 [main] ERROR [c.j.springbootlogback.SpringbootLogbackApplication] SpringbootLogbackApplication.java:20 - Spring boot启动初始化了 126 个 Bean
-2020-09-16 13:59:43,344 [main] ERROR [c.j.springbootlogback.SpringbootLogbackApplication] SpringbootLogbackApplication.java:25 - 【SpringBootDemoLogbackApplication】启动异常：
-java.lang.ArithmeticException: / by zero
-	at com.johann.springbootlogback.SpringbootLogbackApplication.main(SpringbootLogbackApplication.java:23)
-2020-09-16 14:03:40,677 [main] ERROR [c.j.springbootlogback.SpringbootLogbackApplication] SpringbootLogbackApplication.java:20 - Spring boot启动初始化了 126 个 Bean
-2020-09-16 14:03:40,679 [main] ERROR [c.j.springbootlogback.SpringbootLogbackApplication] SpringbootLogbackApplication.java:25 - 【SpringBootDemoLogbackApplication】启动异常：
-java.lang.ArithmeticException: / by zero
-	at com.johann.springbootlogback.SpringbootLogbackApplication.main(SpringbootLogbackApplication.java:23)
