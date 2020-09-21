@@ -22,19 +22,20 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class UserController {
 
-    @PostMapping("/login")
+    @PostMapping("/logins")
     public ModelAndView login(User user, HttpServletRequest request){
 
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.addObject(user);
         modelAndView.setViewName("redirect:/");
+        //modelAndView.setViewName("page/index");
 
         request.getSession().setAttribute("user",user);
         return modelAndView;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/logins")
     public ModelAndView login(){
         return new ModelAndView("page/login");
     }

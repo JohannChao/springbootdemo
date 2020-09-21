@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<header th:replace="~{common/header :: header}"></header>
+<header th:replace="~{common/head :: header}"></header>
 <body>
 <div id="app" style="margin: 20px 20%">
-    <form action="/thymeleaf/user/login" method="post">
+    <form action="/thymeleaf/user/logins" method="post">
         用户名：<input type="text" name="name" placeholder="注册邮箱账号或手机号"/>
         密码：<input type="password" name="password" placeholder="最后一次更改的密码">
         <input type="submit" value="登录">

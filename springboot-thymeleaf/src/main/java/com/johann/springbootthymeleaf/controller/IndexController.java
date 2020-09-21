@@ -25,7 +25,8 @@ public class IndexController {
 
         User user = (User) request.getSession().getAttribute("user");
         if(ObjectUtil.isNull(user)){
-            modelAndView.setViewName("redirect:/user/login");
+            //modelAndView.setViewName("redirect:/user/logins");
+            modelAndView.setViewName("forward:/user/logins");
         }else{
             modelAndView.setViewName("page/index");
             modelAndView.addObject(user);
