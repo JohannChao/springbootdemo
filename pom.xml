@@ -30,6 +30,8 @@
         <module>springboot-aop</module>
         <module>springboot-kafka</module>
         <module>springboot-exceptionhandler</module>
+        <module>springboot-thymeleaf</module>
+        <module>springboot-jdbctemplate</module>
     </modules>
 
     <properties>
