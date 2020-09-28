@@ -1,7 +1,9 @@
-package com.johann.springbootjdbctemplate.dao;
+package com.johann.springbootjdbctemplate.dao.base;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Dict;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -11,14 +13,15 @@ import com.johann.springbootjdbctemplate.annotation.Ignore;
 import com.johann.springbootjdbctemplate.annotation.Pk;
 import com.johann.springbootjdbctemplate.annotation.Table;
 import com.johann.springbootjdbctemplate.constant.ConstantPool;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -80,6 +83,98 @@ public class BaseDao<T,P> {
         log.debug("【执行sql】 ：{} ",sql);
         log.debug("【执行sql】 参数： {}", JSONUtil.toJsonStr(values));
         return jdbcTemplate.update(sql, values);
+    }
+
+    /** 
+    * @Description: 通用根据主键删除
+    * @Param: [pk] 
+    * @return: java.lang.Integer 
+    * @Author: Johann 
+    * @Date: 2020/9/24 
+    */ 
+    protected Integer deleteById(P pk){
+        String tableName = getTableName();
+
+        String sql = StrUtil.format("DELETE FROM {table} WHERE ID = ?",Dict.create().set("table",tableName));
+
+        log.debug("【执行SQL】 SQL ：{}",sql);
+        log.debug("【执行SQL】 参数 ：{}",JSONUtil.toJsonStr(pk));
+        return jdbcTemplate.update(sql,pk);
+    }
+
+    /** 
+    * @Description: 通用根据主键更新，自增列需要添加 {@link Pk} 注解
+    * @Param: [t, pk, ignoreNull]  对象  主键
+    * @return: java.lang.Integer 
+    * @Author: Johann 
+    * @Date: 2020/9/24 
+    */ 
+    protected Integer updateById(T t,P pk,Boolean ignoreNull){
+        String tableName = getTableName(t);
+
+        List<Field> filterField = getField(t,ignoreNull);
+
+        List<String> columnList = getColumns(filterField);
+
+        List<String> columns = columnList.stream().map(s -> StrUtil.appendIfMissing(s," = ?")).collect(Collectors.toList());
+        String params = StrUtil.join(ConstantPool.SEPARATOR_COMMA,columns);
+
+        // 构造值
+        List<Object> valueList = filterField.stream().map(field -> ReflectUtil.getFieldValue(t,field)).collect(Collectors.toList());
+        valueList.add(pk);
+
+        Object[] values = ArrayUtil.toArray(valueList,Object.class);
+
+        String sql = StrUtil.format("UPDATE {table} SET {params} WHERE ID = ?",Dict.create().set("table",tableName).set("params",params));
+
+        log.debug("【执行SQL】 SQL ：{}",sql);
+        log.debug("【执行SQL】 参数 ：{}",JSONUtil.toJsonStr(values));
+
+        return jdbcTemplate.update(sql,values);
+    }
+
+    /** 
+    * @Description:  根据主键查询单条记录
+    * @Param: [pk]  主键
+    * @return: T 单条记录
+    * @Author: Johann 
+    * @Date: 2020/9/24 
+    */ 
+    public T findOneById(P pk) {
+        String tableName = getTableName();
+        String sql = StrUtil.format("SELECT * FROM {table} where id = ?", Dict.create().set("table", tableName));
+        RowMapper<T> rowMapper = new BeanPropertyRowMapper<>(clazz);
+        log.debug("【执行SQL】SQL：{}", sql);
+        String jsonstr = JSONUtil.toJsonStr(pk);
+        log.debug("【执行SQL】参数：{}", JSONUtil.toJsonStr(pk));
+        return jdbcTemplate.queryForObject(sql, new Object[]{pk}, rowMapper);
+    }
+
+    /** 
+    * @Description: 根据对象查询符合条件的记录
+    * @Param: [t] 查询条件
+    * @return: java.util.List<T> 对象列表
+    * @Author: Johann 
+    * @Date: 2020/9/24 
+    */ 
+    public List<T> findByExample(T t) {
+        String tableName = getTableName(t);
+        List<Field> filterField = getField(t, true);
+        List<String> columnList = getColumns(filterField);
+
+        List<String> columns = columnList.stream().map(s -> " and " + s + " = ? ").collect(Collectors.toList());
+
+        String where = StrUtil.join(" ", columns);
+        // 构造值
+        Object[] values = filterField.stream().map(field -> ReflectUtil.getFieldValue(t, field)).toArray();
+
+        String sql = StrUtil.format("SELECT * FROM {table} where 1=1 {where}", Dict.create().set("table", tableName).set("where", StrUtil.isBlank(where) ? "" : where));
+        log.debug("【执行SQL】SQL：{}", sql);
+        log.debug("【执行SQL】参数：{}", JSONUtil.toJsonStr(values));
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql, values);
+        List<T> ret = CollUtil.newArrayList();
+        maps.forEach(map -> ret.add(BeanUtil.fillBeanWithMap(map, ReflectUtil.newInstance(clazz), true, false)));
+        return ret;
     }
 
     /** 
